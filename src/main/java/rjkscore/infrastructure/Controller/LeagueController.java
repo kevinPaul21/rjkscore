@@ -18,7 +18,7 @@ public class LeagueController {
         this.leagueService = leagueService;
     }
 
-     @GetMapping
+    @GetMapping
     public List<LeagueDto> getLeagues() {
         List<LeagueDto> lista = leagueService.getAllLeagues();
         System.out.println("LISTA ENVIADA AL CLIENTE: " + lista.size());
