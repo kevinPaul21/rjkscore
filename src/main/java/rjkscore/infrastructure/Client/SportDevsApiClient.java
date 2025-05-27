@@ -5,9 +5,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import rjkscore.infrastructure.Dto.Response.ApiResponse;
 import rjkscore.infrastructure.Dto.Response.LeagueDto;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Collections;
