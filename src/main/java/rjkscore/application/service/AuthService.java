@@ -1,8 +1,10 @@
 package rjkscore.application.service;
 
+import rjkscore.infrastructure.Dto.Request.LoginRequestDto;
 import rjkscore.infrastructure.Dto.Request.RegisterRequestDto;
-import rjkscore.infrastructure.Dto.Response.AppUserResponseDto;
+import rjkscore.infrastructure.Dto.Response.AuthResponseDto;
 
 public interface AuthService {
-    AppUserResponseDto register(RegisterRequestDto dto);
+    AuthResponseDto register(RegisterRequestDto dto);
+    AuthResponseDto login(LoginRequestDto dto);
 }

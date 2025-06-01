@@ -10,5 +10,6 @@ public class AppUserResponseDto {
     private String username;
     private String email;
     private Integer coins;
+    private String roles;
 
 }
