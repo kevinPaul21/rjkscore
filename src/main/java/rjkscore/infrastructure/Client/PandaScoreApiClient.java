@@ -46,7 +46,7 @@ public class PandaScoreApiClient {
 
     public JsonNode getTeams() {
         return fetchList(
-            "https://api.pandascore.co/teams?filter[videogame_id][0]=1&sort=&page=1&per_page=50"
+            "https://api.pandascore.co/teams"
         );
     }
 
