@@ -55,4 +55,94 @@ public class PandaScoreApiClient {
     public JsonNode getMatches() {
         return fetchList("https://api.pandascore.co/matches");
     }
+
+    public JsonNode getLeagues() {
+        return fetchList("https://api.pandascore.co/leagues?sort=id&page=1&per_page=50");
+    }
+
+    public JsonNode getLeague(String league) {
+        return fetchList("https://api.pandascore.co/leagues/" + league);
+    }
+
+    public JsonNode getLeagueTournaments(String league) {
+        return fetchList(
+            "https://api.pandascore.co/leagues/" + league +
+            "/tournaments?filter[region][0]=ASIA&filter[tier][0]=a&filter[winner_type][0]=Player" +
+            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
+            "&range[has_bracket][0]=true&range[has_bracket][1]=true" +
+            "&range[region][0]=ASIA&range[region][1]=ASIA" +
+            "&range[tier][0]=a&range[tier][1]=a" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getLeagueSeries(String league) {
+        return fetchList(
+            "https://api.pandascore.co/leagues/" + league +
+            "/series?filter[winner_type][0]=Player" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getLeagueMatchesUpcoming(String league) {
+        return fetchList(
+            "https://api.pandascore.co/leagues/" + league +
+            "/matches/upcoming?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
+            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
+            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
+            "&range[draw][0]=true&range[draw][1]=true" +
+            "&range[forfeit][0]=true&range[forfeit][1]=true" +
+            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
+            "&range[status][0]=canceled&range[status][1]=canceled" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getLeagueMatchesRunning(String league) {
+        return fetchList(
+            "https://api.pandascore.co/leagues/" + league +
+            "/matches/running?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
+            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
+            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
+            "&range[draw][0]=true&range[draw][1]=true" +
+            "&range[forfeit][0]=true&range[forfeit][1]=true" +
+            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
+            "&range[status][0]=canceled&range[status][1]=canceled" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getLeagueMatchesPast(String league) {
+        return fetchList(
+            "https://api.pandascore.co/leagues/" + league +
+            "/matches/past?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
+            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
+            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
+            "&range[draw][0]=true&range[draw][1]=true" +
+            "&range[forfeit][0]=true&range[forfeit][1]=true" +
+            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
+            "&range[status][0]=canceled&range[status][1]=canceled" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getLeagueMatches(String league) {
+        return fetchList(
+            "https://api.pandascore.co/leagues/" + league +
+            "/matches?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
+            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
+            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
+            "&range[draw][0]=true&range[draw][1]=true" +
+            "&range[forfeit][0]=true&range[forfeit][1]=true" +
+            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
+            "&range[status][0]=canceled&range[status][1]=canceled" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
+    }
 }
