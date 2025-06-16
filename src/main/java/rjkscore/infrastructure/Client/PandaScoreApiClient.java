@@ -45,7 +45,48 @@ public class PandaScoreApiClient {
     }
 
     public JsonNode getTeams() {
-        return fetchList("https://api.pandascore.co/teams");
+        return fetchList(
+            "https://api.pandascore.co/teams?filter[videogame_id][0]=1&sort=&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getTeam(String teamIdOrSlug) {
+        return fetchList("https://api.pandascore.co/teams/" + teamIdOrSlug);
+    }
+
+    public JsonNode getTeamLeagues(String teamIdOrSlug) {
+        return fetchList(
+            "https://api.pandascore.co/teams/" + teamIdOrSlug +
+            "/leagues?sort=id&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getTeamMatches(String teamIdOrSlug) {
+        return fetchList(
+            "https://api.pandascore.co/teams/" + teamIdOrSlug +
+            "/matches?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
+            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
+            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
+            "&range[draw][0]=true&range[draw][1]=true" +
+            "&range[forfeit][0]=true&range[forfeit][1]=true" +
+            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
+            "&range[status][0]=canceled&range[status][1]=canceled" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
+    }
+
+    public JsonNode getTeamTournaments(String teamIdOrSlug) {
+        return fetchList(
+            "https://api.pandascore.co/teams/" + teamIdOrSlug +
+            "/tournaments?filter[region][0]=ASIA&filter[tier][0]=a&filter[winner_type][0]=Player" +
+            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
+            "&range[has_bracket][0]=true&range[has_bracket][1]=true" +
+            "&range[region][0]=ASIA&range[region][1]=ASIA" +
+            "&range[tier][0]=a&range[tier][1]=a" +
+            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+            "&sort=begin_at&page=1&per_page=50"
+        );
     }
 
     public JsonNode getPlayers() {
