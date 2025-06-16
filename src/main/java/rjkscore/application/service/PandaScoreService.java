@@ -19,4 +19,11 @@ public interface PandaScoreService {
     JsonNode getLeagueMatchesRunning(String league);
     JsonNode getLeagueMatchesPast(String league);
     JsonNode getLeagueMatches(String league);
+    JsonNode getVideogames();
+    JsonNode getVideogame(String videogameIdOrSlug);
+    JsonNode getVideogameLeagues(String videogameIdOrSlug);
+    JsonNode getVideogameSeries(String videogameIdOrSlug);
+    JsonNode getVideogameTitles(String videogameIdOrSlug);
+    JsonNode getVideogameTournaments(String videogameIdOrSlug);
+    JsonNode getVideogameVersions(String videogameIdOrSlug);
 }

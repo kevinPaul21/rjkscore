@@ -284,4 +284,32 @@ public class PandaScoreApiClient {
             "&sort=begin_at&page=1&per_page=50"
         );
     }
+
+    public JsonNode getVideogames() {
+        return fetchList("https://api.pandascore.co/videogames?page=1&per_page=50");
+    }
+
+    public JsonNode getVideogame(String videogameIdOrSlug) {
+        return fetchList("https://api.pandascore.co/videogames/" + videogameIdOrSlug);
+    }
+
+    public JsonNode getVideogameLeagues(String videogameIdOrSlug) {
+        return fetchList("https://api.pandascore.co/videogames/" + videogameIdOrSlug + "/leagues");
+    }
+
+    public JsonNode getVideogameSeries(String videogameIdOrSlug) {
+        return fetchList("https://api.pandascore.co/videogames/" + videogameIdOrSlug + "/series");
+    }
+
+    public JsonNode getVideogameTitles(String videogameIdOrSlug) {
+        return fetchList("https://api.pandascore.co/videogames/" + videogameIdOrSlug + "/titles");
+    }
+
+    public JsonNode getVideogameTournaments(String videogameIdOrSlug) {
+        return fetchList("https://api.pandascore.co/videogames/" + videogameIdOrSlug + "/tournaments");
+    }
+
+    public JsonNode getVideogameVersions(String videogameIdOrSlug) {
+        return fetchList("https://api.pandascore.co/videogames/" + videogameIdOrSlug + "/versions");
+    }
 }
