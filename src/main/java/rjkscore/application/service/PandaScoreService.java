@@ -6,6 +6,11 @@ public interface PandaScoreService {
     JsonNode getTeams();
     JsonNode getPlayers();
     JsonNode getMatches();
+    JsonNode getMatchesPast();
+    JsonNode getMatchesRunning();
+    JsonNode getMatchesUpcoming();
+    JsonNode getMatch(String matchIdOrSlug);
+    JsonNode getMatchOpponents(String matchIdOrSlug);
     JsonNode getLeagues();
     JsonNode getLeague(String league);
     JsonNode getLeagueTournaments(String league);
