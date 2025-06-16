@@ -30,4 +30,44 @@ public class PandaScoreServiceImpl implements PandaScoreService {
     public JsonNode getMatches() {
         return pandaScoreApiClient.getMatches();
     }
+
+    @Override
+    public JsonNode getLeagues() {
+        return pandaScoreApiClient.getLeagues();
+    }
+
+    @Override
+    public JsonNode getLeague(String league) {
+        return pandaScoreApiClient.getLeague(league);
+    }
+
+    @Override
+    public JsonNode getLeagueTournaments(String league) {
+        return pandaScoreApiClient.getLeagueTournaments(league);
+    }
+
+    @Override
+    public JsonNode getLeagueSeries(String league) {
+        return pandaScoreApiClient.getLeagueSeries(league);
+    }
+
+    @Override
+    public JsonNode getLeagueMatchesUpcoming(String league) {
+        return pandaScoreApiClient.getLeagueMatchesUpcoming(league);
+    }
+
+    @Override
+    public JsonNode getLeagueMatchesRunning(String league) {
+        return pandaScoreApiClient.getLeagueMatchesRunning(league);
+    }
+
+    @Override
+    public JsonNode getLeagueMatchesPast(String league) {
+        return pandaScoreApiClient.getLeagueMatchesPast(league);
+    }
+
+    @Override
+    public JsonNode getLeagueMatches(String league) {
+        return pandaScoreApiClient.getLeagueMatches(league);
+    }
 }
