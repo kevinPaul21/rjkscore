@@ -49,7 +49,7 @@ public class PandaScoreApiClient {
     }
 
     public JsonNode getPlayers() {
-        return fetchList("https://api.pandascore.co/players?filter[videogame_id][0]=1&sort=birthday&page=1&per_page=50");
+        return fetchList("https://api.pandascore.co/players");
     }
 
     public JsonNode getPlayer(String playerIdOrSlug) {
