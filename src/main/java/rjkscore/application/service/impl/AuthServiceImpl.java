@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
 import rjkscore.Domain.AppUser;
 import rjkscore.application.mapper.AppUserMapper;
 import rjkscore.application.service.AuthService;
@@ -75,5 +76,6 @@ public class AuthServiceImpl implements AuthService {
         response.setMessage("Login correcto");
         return response;
     }
+
 
 }
