@@ -11,5 +11,7 @@ public interface AppUserService {
     AppUserResponseDto getUserById(Long userId);
 
     AppUserResponseDto updateUser(Long userId, UpdateUserDto dto);
+
+    AppUserResponseDto updateUser(String username, UpdateUserDto dto);
     AppUserResponseDto updateCoins(Long userId, int newCoins); 
 }

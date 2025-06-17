@@ -1,5 +1,6 @@
 package rjkscore.infrastructure.Controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,12 @@ public class AppUserController {
     @GetMapping("/{userId}")
     public AppUserResponseDto getUserById(@PathVariable Long userId) {
         return service.getUserById(userId);
+    }
+
+    @PutMapping("/me")
+    public ResponseEntity<AppUserResponseDto> updateCurrentUser(Principal principal,
+                                                                @RequestBody UpdateUserDto dto) {
+        return ResponseEntity.ok(service.updateUser(principal.getName(), dto));
     }
 
     @PutMapping("/{userId}")
