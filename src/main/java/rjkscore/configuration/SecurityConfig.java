@@ -37,6 +37,7 @@ public JwtAuthenticationFilter jwtAuthenticationFilter(JwtUtil jwtUtil, UserDeta
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST, "/api/favorites").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/users/me").authenticated()
                 .requestMatchers("/api/**").permitAll()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
