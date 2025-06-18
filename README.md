@@ -131,6 +131,7 @@ public ResponseEntity<AppUserResponseDto> updateCurrentUser(Principal principal,
 ```
 
 - `DELETE /api/favorites/{id}` – Elimina un favorito.
+- `DELETE /api/favorites` – Borra todos los favoritos del usuario.
 
 Internamente se consulta PandaScore para obtener información del elemento guardado.
 Los valores posibles de `itemType` incluyen los genéricos (`team`, `player`, `match`, `tournament`, `videogame`) y otros específicos como `csgo_team`, `csgo_player`, `dota2_team`, `dota2_player`, etc.
@@ -158,6 +159,7 @@ Bajo `/api/pandascore` existen múltiples rutas para equipos, jugadores, partido
 - `GET /api/pandascore/videogames`
 - Endpoints específicos de CSGO bajo `/api/pandascore/csgo` (maps, weapons, games, etc.).
 - Endpoints de Dota2 bajo `/api/pandascore/dota2` (abilities, heroes, items, matches, etc.).
+- Endpoints de Valorant bajo `/api/pandascore/valorant` (abilities, agents, maps, matches, etc.).
 
 Todas estas rutas devuelven directamente la respuesta de PandaScore en formato JSON.
 

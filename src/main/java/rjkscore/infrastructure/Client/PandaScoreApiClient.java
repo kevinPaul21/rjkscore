@@ -551,4 +551,97 @@ public class PandaScoreApiClient {
         return fetchList("https://api.pandascore.co/lol/tournaments/upcoming");
     }
 
+    // --- VALORANT endpoints ---
+    public JsonNode getValorantAbilities() {
+        return fetchList("https://api.pandascore.co/valorant/abilities");
+    }
+
+    public JsonNode getValorantAbility(String id) {
+        return fetchList("https://api.pandascore.co/valorant/abilities/" + id);
+    }
+
+    public JsonNode getValorantAgents() {
+        return fetchList("https://api.pandascore.co/valorant/agents");
+    }
+
+    public JsonNode getValorantAgent(String id) {
+        return fetchList("https://api.pandascore.co/valorant/agents/" + id);
+    }
+
+    public JsonNode getValorantLeagues() {
+        return fetchList("https://api.pandascore.co/valorant/leagues");
+    }
+
+    public JsonNode getValorantMaps() {
+        return fetchList("https://api.pandascore.co/valorant/maps");
+    }
+
+    public JsonNode getValorantMap(String id) {
+        return fetchList("https://api.pandascore.co/valorant/maps/" + id);
+    }
+
+    public JsonNode getValorantMatches() {
+        return fetchList("https://api.pandascore.co/valorant/matches");
+    }
+
+    public JsonNode getValorantMatchesPast() {
+        return fetchList("https://api.pandascore.co/valorant/matches/past");
+    }
+
+    public JsonNode getValorantMatchesRunning() {
+        return fetchList("https://api.pandascore.co/valorant/matches/running");
+    }
+
+    public JsonNode getValorantMatchesUpcoming() {
+        return fetchList("https://api.pandascore.co/valorant/matches/upcoming");
+    }
+
+    public JsonNode getValorantPlayers() {
+        return fetchList("https://api.pandascore.co/valorant/players");
+    }
+
+    public JsonNode getValorantSeries() {
+        return fetchList("https://api.pandascore.co/valorant/series");
+    }
+
+    public JsonNode getValorantSeriesPast() {
+        return fetchList("https://api.pandascore.co/valorant/series/past");
+    }
+
+    public JsonNode getValorantSeriesRunning() {
+        return fetchList("https://api.pandascore.co/valorant/series/running");
+    }
+
+    public JsonNode getValorantSeriesUpcoming() {
+        return fetchList("https://api.pandascore.co/valorant/series/upcoming");
+    }
+
+    public JsonNode getValorantTeams() {
+        return fetchList("https://api.pandascore.co/valorant/teams");
+    }
+
+    public JsonNode getValorantTournaments() {
+        return fetchList("https://api.pandascore.co/valorant/tournaments");
+    }
+
+    public JsonNode getValorantTournamentsPast() {
+        return fetchList("https://api.pandascore.co/valorant/tournaments/past");
+    }
+
+    public JsonNode getValorantTournamentsRunning() {
+        return fetchList("https://api.pandascore.co/valorant/tournaments/running");
+    }
+
+    public JsonNode getValorantTournamentsUpcoming() {
+        return fetchList("https://api.pandascore.co/valorant/tournaments/upcoming");
+    }
+
+    public JsonNode getValorantWeapons() {
+        return fetchList("https://api.pandascore.co/valorant/weapons");
+    }
+
+    public JsonNode getValorantWeapon(String id) {
+        return fetchList("https://api.pandascore.co/valorant/weapons/" + id);
+    }
+
 }
