@@ -422,4 +422,133 @@ public class PandaScoreApiClient {
         return fetchList("https://api.pandascore.co/dota2/tournaments/" + id);
     }
 
+    // --- LOL endpoints ---
+    public JsonNode getLolChampions() {
+        return fetchList("https://api.pandascore.co/lol/champions");
+    }
+
+    public JsonNode getLolChampion(String id) {
+        return fetchList("https://api.pandascore.co/lol/champions/" + id);
+    }
+
+    public JsonNode getLolItems() {
+        return fetchList("https://api.pandascore.co/lol/items");
+    }
+
+    public JsonNode getLolItem(String id) {
+        return fetchList("https://api.pandascore.co/lol/items/" + id);
+    }
+
+    public JsonNode getLolLeagues() {
+        return fetchList("https://api.pandascore.co/lol/leagues");
+    }
+
+    public JsonNode getLolMasteries() {
+        return fetchList("https://api.pandascore.co/lol/masteries");
+    }
+
+    public JsonNode getLolMastery(String id) {
+        return fetchList("https://api.pandascore.co/lol/masteries/" + id);
+    }
+
+    public JsonNode getLolMatches() {
+        return fetchList("https://api.pandascore.co/lol/matches");
+    }
+
+    public JsonNode getLolMatchesPast() {
+        return fetchList("https://api.pandascore.co/lol/matches/past");
+    }
+
+    public JsonNode getLolMatchesRunning() {
+        return fetchList("https://api.pandascore.co/lol/matches/running");
+    }
+
+    public JsonNode getLolMatchesUpcoming() {
+        return fetchList("https://api.pandascore.co/lol/matches/upcoming");
+    }
+
+    public JsonNode getLolMatch(String id) {
+        return fetchList("https://api.pandascore.co/lol/matches/" + id);
+    }
+
+    public JsonNode getLolPlayers() {
+        return fetchList("https://api.pandascore.co/lol/players");
+    }
+
+    public JsonNode getLolPlayer(String id) {
+        return fetchList("https://api.pandascore.co/lol/players/" + id);
+    }
+
+    public JsonNode getLolRunesReforged() {
+        return fetchList("https://api.pandascore.co/lol/runes-reforged");
+    }
+
+    public JsonNode getLolRunesReforgedPaths() {
+        return fetchList("https://api.pandascore.co/lol/runes-reforged-paths");
+    }
+
+    public JsonNode getLolRunesReforgedPath(String id) {
+        return fetchList("https://api.pandascore.co/lol/runes-reforged-paths/" + id);
+    }
+
+    public JsonNode getLolRuneReforged(String id) {
+        return fetchList("https://api.pandascore.co/lol/runes-reforged/" + id);
+    }
+
+    public JsonNode getLolSeries() {
+        return fetchList("https://api.pandascore.co/lol/series");
+    }
+
+    public JsonNode getLolSeriesPast() {
+        return fetchList("https://api.pandascore.co/lol/series/past");
+    }
+
+    public JsonNode getLolSeriesRunning() {
+        return fetchList("https://api.pandascore.co/lol/series/running");
+    }
+
+    public JsonNode getLolSeriesUpcoming() {
+        return fetchList("https://api.pandascore.co/lol/series/upcoming");
+    }
+
+    public JsonNode getLolSeriesTeams(String id) {
+        return fetchList("https://api.pandascore.co/lol/series/" + id + "/teams");
+    }
+
+    public JsonNode getLolTeams() {
+        return fetchList("https://api.pandascore.co/lol/teams");
+    }
+
+    public JsonNode getLolTeam(String id) {
+        return fetchList("https://api.pandascore.co/lol/teams/" + id);
+    }
+
+    public JsonNode getLolSpells() {
+        return fetchList("https://api.pandascore.co/lol/spells");
+    }
+
+    public JsonNode getLolSpell(String id) {
+        return fetchList("https://api.pandascore.co/lol/spells/" + id);
+    }
+
+    public JsonNode getLolTournaments() {
+        return fetchList("https://api.pandascore.co/lol/tournaments");
+    }
+
+    public JsonNode getLolTournament(String id) {
+        return fetchList("https://api.pandascore.co/lol/tournaments/" + id);
+    }
+
+    public JsonNode getLolTournamentsPast() {
+        return fetchList("https://api.pandascore.co/lol/tournaments/past");
+    }
+
+    public JsonNode getLolTournamentsRunning() {
+        return fetchList("https://api.pandascore.co/lol/tournaments/running");
+    }
+
+    public JsonNode getLolTournamentsUpcoming() {
+        return fetchList("https://api.pandascore.co/lol/tournaments/upcoming");
+    }
+
 }
