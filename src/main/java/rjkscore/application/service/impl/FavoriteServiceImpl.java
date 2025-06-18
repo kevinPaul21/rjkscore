@@ -2,6 +2,9 @@ package rjkscore.application.service.impl;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.stereotype.Service;
 
 import rjkscore.Domain.AppUser;
@@ -11,6 +14,7 @@ import rjkscore.infrastructure.Dto.Request.FavoriteRequestDto;
 import rjkscore.infrastructure.Dto.Response.FavoriteResponseDto;
 import rjkscore.infrastructure.Repository.AppUserRepository;
 import rjkscore.infrastructure.Repository.FavoriteRepository;
+import rjkscore.infrastructure.Client.PandaScoreApiClient;
 
 @Service
 public class FavoriteServiceImpl implements FavoriteService {
@@ -18,13 +22,18 @@ public class FavoriteServiceImpl implements FavoriteService {
     private final FavoriteRepository favoriteRepository;
     private final AppUserRepository appUserRepository;
     private final FavoriteMapper favoriteMapper;
+    private final PandaScoreApiClient pandaScoreApiClient;
+    private final ObjectMapper objectMapper;
 
     public FavoriteServiceImpl(FavoriteRepository favoriteRepository,
                                AppUserRepository appUserRepository,
-                               FavoriteMapper favoriteMapper) {
+                               FavoriteMapper favoriteMapper,
+                               PandaScoreApiClient pandaScoreApiClient) {
         this.favoriteRepository = favoriteRepository;
         this.appUserRepository = appUserRepository;
         this.favoriteMapper = favoriteMapper;
+        this.pandaScoreApiClient = pandaScoreApiClient;
+        this.objectMapper = new ObjectMapper();
     }
 
     @Override
@@ -40,7 +49,17 @@ public class FavoriteServiceImpl implements FavoriteService {
         AppUser user = appUserRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return favoriteRepository.findByUser(user).stream()
-                .map(favoriteMapper::toResponseDto)
+                .map(fav -> {
+                    FavoriteResponseDto dto = favoriteMapper.toResponseDto(fav);
+                    JsonNode itemData = switch (fav.getItemType().toLowerCase()) {
+                        case "team" -> pandaScoreApiClient.getTeam(fav.getItemId().toString());
+                        case "player" -> pandaScoreApiClient.getPlayer(fav.getItemId().toString());
+                        case "match" -> pandaScoreApiClient.getMatch(fav.getItemId().toString());
+                        default -> objectMapper.createObjectNode();
+                    };
+                    dto.setItemData(itemData);
+                    return dto;
+                })
                 .toList();
     }
 

@@ -2,6 +2,8 @@ package rjkscore.infrastructure.Dto.Response;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,4 +14,5 @@ public class FavoriteResponseDto {
     private String itemType;
     private Integer itemId;
     private LocalDateTime createdAt;
+    private JsonNode itemData;
 }
