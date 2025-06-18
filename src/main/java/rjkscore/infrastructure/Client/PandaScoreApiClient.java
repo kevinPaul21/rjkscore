@@ -31,11 +31,10 @@ public class PandaScoreApiClient {
 
         try {
             ResponseEntity<String> response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                requestEntity,
-                String.class
-            );
+                    url,
+                    HttpMethod.GET,
+                    requestEntity,
+                    String.class);
             String json = response.getBody();
             return objectMapper.readTree(json);
         } catch (Exception e) {
@@ -46,8 +45,7 @@ public class PandaScoreApiClient {
 
     public JsonNode getTeams() {
         return fetchList(
-            "https://api.pandascore.co/teams"
-        );
+                "https://api.pandascore.co/teams");
     }
 
     public JsonNode getTeam(String teamIdOrSlug) {
@@ -56,37 +54,20 @@ public class PandaScoreApiClient {
 
     public JsonNode getTeamLeagues(String teamIdOrSlug) {
         return fetchList(
-            "https://api.pandascore.co/teams/" + teamIdOrSlug +
-            "/leagues?sort=id&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/teams/" + teamIdOrSlug +
+                        "/leagues");
     }
 
     public JsonNode getTeamMatches(String teamIdOrSlug) {
         return fetchList(
-            "https://api.pandascore.co/teams/" + teamIdOrSlug +
-            "/matches?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/teams/" + teamIdOrSlug +
+                        "/matches");
     }
 
     public JsonNode getTeamTournaments(String teamIdOrSlug) {
         return fetchList(
-            "https://api.pandascore.co/teams/" + teamIdOrSlug +
-            "/tournaments?filter[region][0]=ASIA&filter[tier][0]=a&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[has_bracket][0]=true&range[has_bracket][1]=true" +
-            "&range[region][0]=ASIA&range[region][1]=ASIA" +
-            "&range[tier][0]=a&range[tier][1]=a" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/teams/" + teamIdOrSlug +
+                        "/tournaments");
     }
 
     public JsonNode getPlayers() {
@@ -99,46 +80,28 @@ public class PandaScoreApiClient {
 
     public JsonNode getPlayerLeagues(String playerIdOrSlug) {
         return fetchList(
-            "https://api.pandascore.co/players/" + playerIdOrSlug +
-            "/leagues?sort=id&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/players/" + playerIdOrSlug +
+                        "/leagues?sort=id&page=1&per_page=50");
     }
 
     public JsonNode getPlayerMatches(String playerIdOrSlug) {
         return fetchList(
-            "https://api.pandascore.co/players/" + playerIdOrSlug +
-            "/matches?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/players/" + playerIdOrSlug +
+                        "/matches");
     }
 
     public JsonNode getPlayerSeries(String playerIdOrSlug) {
         return fetchList(
-            "https://api.pandascore.co/players/" + playerIdOrSlug +
-            "/series?filter[winner_type][0]=Player" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/players/" + playerIdOrSlug +
+                        "/series?filter[winner_type][0]=Player" +
+                        "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
+                        "&sort=begin_at&page=1&per_page=50");
     }
 
     public JsonNode getPlayerTournaments(String playerIdOrSlug) {
         return fetchList(
-            "https://api.pandascore.co/players/" + playerIdOrSlug +
-            "/tournaments?filter[region][0]=ASIA&filter[tier][0]=a&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[has_bracket][0]=true&range[has_bracket][1]=true" +
-            "&range[region][0]=ASIA&range[region][1]=ASIA" +
-            "&range[tier][0]=a&range[tier][1]=a" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/players/" + playerIdOrSlug +
+                        "/tournaments");
     }
 
     public JsonNode getMatches() {
@@ -147,36 +110,17 @@ public class PandaScoreApiClient {
 
     public JsonNode getMatchesPast() {
         return fetchList(
-            "https://api.pandascore.co/matches/past?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/matches/past");
     }
 
     public JsonNode getMatchesRunning() {
         return fetchList(
-            "https://api.pandascore.co/matches/running?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/matches/running");
     }
 
     public JsonNode getMatchesUpcoming() {
         return fetchList(
-            "https://api.pandascore.co/matches/upcoming"
-        );
+                "https://api.pandascore.co/matches/upcoming");
     }
 
     public JsonNode getMatch(String matchIdOrSlug) {
@@ -188,7 +132,7 @@ public class PandaScoreApiClient {
     }
 
     public JsonNode getLeagues() {
-        return fetchList("https://api.pandascore.co/leagues?sort=id&page=1&per_page=50");
+        return fetchList("https://api.pandascore.co/leagues");
     }
 
     public JsonNode getLeague(String league) {
@@ -197,88 +141,42 @@ public class PandaScoreApiClient {
 
     public JsonNode getLeagueTournaments(String league) {
         return fetchList(
-            "https://api.pandascore.co/leagues/" + league +
-            "/tournaments?filter[region][0]=ASIA&filter[tier][0]=a&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[has_bracket][0]=true&range[has_bracket][1]=true" +
-            "&range[region][0]=ASIA&range[region][1]=ASIA" +
-            "&range[tier][0]=a&range[tier][1]=a" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/leagues/" + league +
+                        "/tournaments");
     }
 
     public JsonNode getLeagueSeries(String league) {
         return fetchList(
-            "https://api.pandascore.co/leagues/" + league +
-            "/series?filter[winner_type][0]=Player" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/leagues/" + league +
+                        "/series");
     }
 
     public JsonNode getLeagueMatchesUpcoming(String league) {
         return fetchList(
-            "https://api.pandascore.co/leagues/" + league +
-            "/matches/upcoming?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/leagues/" + league +
+                        "/matches/upcoming");
     }
 
     public JsonNode getLeagueMatchesRunning(String league) {
         return fetchList(
-            "https://api.pandascore.co/leagues/" + league +
-            "/matches/running?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/leagues/" + league +
+                        "/matches/running");
     }
 
     public JsonNode getLeagueMatchesPast(String league) {
         return fetchList(
-            "https://api.pandascore.co/leagues/" + league +
-            "/matches/past?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/leagues/" + league +
+                        "/matches/past");
     }
 
     public JsonNode getLeagueMatches(String league) {
         return fetchList(
-            "https://api.pandascore.co/leagues/" + league +
-            "/matches?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
-        );
+                "https://api.pandascore.co/leagues/" + league +
+                        "/matches");
     }
 
     public JsonNode getVideogames() {
-        return fetchList("https://api.pandascore.co/videogames?page=1&per_page=50");
+        return fetchList("https://api.pandascore.co/videogames");
     }
 
     public JsonNode getVideogame(String videogameIdOrSlug) {
@@ -409,9 +307,10 @@ public class PandaScoreApiClient {
     public JsonNode getCsgoWeapon(String id) {
         return fetchList("https://api.pandascore.co/csgo/weapons/" + id);
     }
-// ----
+
+    // ----
     public JsonNode getSeries(String id) {
-    return fetchList("https://api.pandascore.co/series/" + id);
-}
+        return fetchList("https://api.pandascore.co/series/" + id);
+    }
 
 }
