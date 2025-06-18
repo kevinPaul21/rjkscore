@@ -79,6 +79,16 @@ public List<FavoriteResponseDto> getFavorites(String username) {
                     case "dota2_tournament" -> itemData = pandaScoreApiClient.getDota2Tournament(id);
                     case "dota2_match" -> itemData = pandaScoreApiClient.getDota2Match(id);
                     case "dota2_game" -> itemData = pandaScoreApiClient.getDota2Game(id);
+                    case "lol_team" -> itemData = pandaScoreApiClient.getLolTeam(id);
+                    case "lol_player" -> itemData = pandaScoreApiClient.getLolPlayer(id);
+                    case "lol_match" -> itemData = pandaScoreApiClient.getLolMatch(id);
+                    case "lol_tournament" -> itemData = pandaScoreApiClient.getLolTournament(id);
+                    case "lol_champion" -> itemData = pandaScoreApiClient.getLolChampion(id);
+                    case "lol_item" -> itemData = pandaScoreApiClient.getLolItem(id);
+                    case "lol_mastery" -> itemData = pandaScoreApiClient.getLolMastery(id);
+                    case "lol_spell" -> itemData = pandaScoreApiClient.getLolSpell(id);
+                    case "lol_rune" -> itemData = pandaScoreApiClient.getLolRuneReforged(id);
+                    case "lol_rune_path" -> itemData = pandaScoreApiClient.getLolRunesReforgedPath(id);
                     default -> itemData = null;
                 }
 
