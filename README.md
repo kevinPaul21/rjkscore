@@ -36,48 +36,138 @@ El proyecto utiliza Maven. Para compilar y ejecutar la aplicación localmente:
 
 Las migraciones de base de datos se encuentran en `src/main/java/rjkscore/Resources/db/migration` y se aplicarán al iniciar la aplicación.
 
-## Endpoints principales
+## Arquitectura y análisis técnico
 
-La API está dividida en varios controladores bajo el prefijo `/api`.
+La aplicación sigue el patrón habitual de capas en Spring Boot. Las entidades `AppUser` y `Favorite` residen en el paquete `Domain`; los repositorios JPA se encuentran en `infrastructure/Repository` y la lógica de negocio en `application/service`.
+
+La seguridad se implementa con JWT. En `SecurityConfig` se definen las rutas públicas y se registra el filtro que valida los tokens:
+
+```java
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
+    http
+        .cors(Customizer.withDefaults())
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers(HttpMethod.POST, "/api/favorites").authenticated()
+            .requestMatchers(HttpMethod.GET, "/api/favorites").authenticated()
+            .requestMatchers(HttpMethod.PUT, "/api/users/me").authenticated()
+            .requestMatchers("/api/auth/**", "/api/pandascore/**", "/api/leagues/**").permitAll()
+        )
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+    http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    return http.build();
+}
+```
+
+El filtro `JwtAuthenticationFilter` excluye las rutas públicas y valida el token:
+
+```java
+protected boolean shouldNotFilter(HttpServletRequest request) {
+    String path = request.getRequestURI();
+    return path.startsWith("/api/auth/") ||
+           path.startsWith("/api/pandascore/") ||
+           path.startsWith("/api/leagues/");
+}
+```
+
+## Referencia detallada de la API
 
 ### Autenticación
 
-- `POST /api/auth/register` &ndash; Registro de nuevos usuarios.
-- `POST /api/auth/login` &ndash; Inicio de sesión. Devuelve un JWT que debe incluirse en la cabecera `Authorization` en las peticiones protegidas.
+- `POST /api/auth/register` – Crea un usuario. Cuerpo de ejemplo:
+
+```json
+{
+  "username": "jdoe",
+  "email": "jdoe@example.com",
+  "password": "secreto"
+}
+```
+
+- `POST /api/auth/login` – Devuelve un JWT que deberá enviarse en la cabecera `Authorization` como `Bearer <token>`.
+
+```json
+{
+  "usernameOrEmail": "jdoe",
+  "password": "secreto"
+}
+```
 
 ### Usuarios
 
-- `GET /api/users` &ndash; Lista todos los usuarios.
-- `GET /api/users/{id}` &ndash; Obtiene los datos de un usuario por ID.
-- `PUT /api/users/me` &ndash; Actualiza el usuario autenticado.
-- `PUT /api/users/{id}` &ndash; Actualiza un usuario concreto.
-- `PUT /api/users/{id}/coins` &ndash; Modifica las monedas de un usuario.
+- `GET /api/users` – Lista todos los usuarios.
+- `GET /api/users/{id}` – Datos de un usuario por ID.
+- `PUT /api/users/me` – Actualiza el usuario autenticado.
+- `PUT /api/users/{id}` – Actualiza un usuario concreto.
+- `PUT /api/users/{id}/coins` – Modifica las monedas de un usuario.
+
+Fragmento del controlador:
+
+```java
+@PutMapping("/me")
+public ResponseEntity<AppUserResponseDto> updateCurrentUser(Principal principal, @RequestBody UpdateUserDto dto) {
+    try {
+        return ResponseEntity.ok(service.updateUser(principal.getName(), dto));
+    } catch (RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    }
+}
+```
 
 ### Favoritos
 
-(Requiere autenticación)
+(Requiere token de autenticación)
 
-- `GET /api/favorites` &ndash; Devuelve los favoritos del usuario actual.
-- `POST /api/favorites` &ndash; Añade un nuevo favorito.
-- `DELETE /api/favorites/{id}` &ndash; Elimina un favorito.
+- `GET /api/favorites` – Devuelve los favoritos del usuario actual.
+- `POST /api/favorites` – Añade un favorito. Ejemplo:
+
+```json
+{
+  "itemType": "team",
+  "itemId": 123
+}
+```
+
+- `DELETE /api/favorites/{id}` – Elimina un favorito.
+
+Internamente se consulta PandaScore para obtener información del elemento guardado:
+
+```java
+switch (type) {
+    case "team" -> itemData = pandaScoreApiClient.getTeam(id);
+    case "player" -> itemData = pandaScoreApiClient.getPlayer(id);
+    case "match" -> itemData = pandaScoreApiClient.getMatch(id);
+    // ...
+}
+```
 
 ### Leagues
 
-- `GET /api/leagues` &ndash; Obtiene todas las ligas (SportDevs).
+- `GET /api/leagues` – Lista de ligas obtenidas de SportDevs.
 
-### PandaScore (equipos, jugadores, partidos...)
+### PandaScore
 
-Bajo `/api/pandascore` están disponibles múltiples endpoints para consultar datos en PandaScore:
+Bajo `/api/pandascore` existen múltiples rutas para equipos, jugadores, partidos y videojuegos. Por ejemplo:
 
-- `GET /api/pandascore/teams`, `/teams/{id}` y recursos relacionados (ligas, partidos, torneos).
-- `GET /api/pandascore/players`, `/players/{id}` y subrutas equivalentes.
-- `GET /api/pandascore/matches`, `/matches/past`, `/matches/running`, etc.
-- `GET /api/pandascore/videogames`, `/videogames/{id}`, etc.
-- `GET /api/pandascore/csgo/...` para consultar datos específicos de Counter Strike (mapas, armas, jugadores, torneos, etc.).
+- `GET /api/pandascore/teams`
+- `GET /api/pandascore/players`
+- `GET /api/pandascore/matches`
+- `GET /api/pandascore/videogames`
+- Endpoints específicos de CSGO bajo `/api/pandascore/csgo` (maps, weapons, games, etc.).
 
-Consultar los controladores en `src/main/java/rjkscore/infrastructure/Controller` para ver el listado completo de rutas.
+Todas estas rutas devuelven directamente la respuesta de PandaScore en formato JSON.
+
+### Uso con Postman
+
+1. Realiza una petición `POST /api/auth/login` con tus credenciales y copia el valor `token` de la respuesta.
+2. En las peticiones que requieran autenticación añade la cabecera:
+   `Authorization: Bearer <token>`.
+3. Puedes crear variables en Postman para el `baseUrl` y el token, facilitando las pruebas de los distintos endpoints.
 
 ## Estructura del código
+
 
 - `Domain`: Entidades JPA como `AppUser` y `Favorite`.
 - `infrastructure/Repository`: Interfaces de acceso a datos con Spring Data JPA.
