@@ -38,7 +38,7 @@ public JwtAuthenticationFilter jwtAuthenticationFilter(JwtUtil jwtUtil, UserDeta
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST, "/api/favorites").authenticated()
                 .requestMatchers(HttpMethod.GET, "/api/favorites").authenticated()
-                .requestMatchers(HttpMethod.DELETE, "/api/favorites").authenticated()
+                .requestMatchers(HttpMethod.DELETE, "/api/favorites/**").authenticated()
                 .requestMatchers(HttpMethod.PUT, "/api/users/me").authenticated()
                 .requestMatchers("/api/auth/**", "/api/pandascore/**", "/api/leagues/**").permitAll()
             )
