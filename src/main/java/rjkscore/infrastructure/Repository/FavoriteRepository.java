@@ -9,4 +9,5 @@ import rjkscore.Domain.Favorite;
 
 public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
     List<Favorite> findByUser(AppUser user);
+    void deleteByUser(AppUser user);
 }
