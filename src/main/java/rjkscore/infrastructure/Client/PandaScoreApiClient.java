@@ -175,15 +175,7 @@ public class PandaScoreApiClient {
 
     public JsonNode getMatchesUpcoming() {
         return fetchList(
-            "https://api.pandascore.co/matches/upcoming?filter[match_type][0]=all_games_played&filter[status][0]=canceled" +
-            "&filter[videogame][0]=1&filter[winner_type][0]=Player" +
-            "&range[detailed_stats][0]=true&range[detailed_stats][1]=true" +
-            "&range[draw][0]=true&range[draw][1]=true" +
-            "&range[forfeit][0]=true&range[forfeit][1]=true" +
-            "&range[match_type][0]=all_games_played&range[match_type][1]=all_games_played" +
-            "&range[status][0]=canceled&range[status][1]=canceled" +
-            "&range[winner_type][0]=Player&range[winner_type][1]=Player" +
-            "&sort=begin_at&page=1&per_page=50"
+            "https://api.pandascore.co/matches/upcoming"
         );
     }
 
