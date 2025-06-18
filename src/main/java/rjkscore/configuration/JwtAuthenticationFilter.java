@@ -25,15 +25,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        // Ignora el filtro JWT para rutas públicas
+        return path.startsWith("/api/auth/") 
+            || path.startsWith("/api/pandascore/") 
+            || path.startsWith("/api/leagues/");
+    }
+
+    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String path = request.getRequestURI();
-
-        // Si es registro o login, ignora el filtro JWT y sigue normal
-        if (path.equals("/api/auth/register") || path.equals("/api/auth/login")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
 
         final String header = request.getHeader("Authorization");
         String jwt = null;
@@ -53,7 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
+
         filterChain.doFilter(request, response);
     }
-
 }
