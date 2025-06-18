@@ -73,6 +73,7 @@ Bajo `/api/pandascore` están disponibles múltiples endpoints para consultar da
 - `GET /api/pandascore/players`, `/players/{id}` y subrutas equivalentes.
 - `GET /api/pandascore/matches`, `/matches/past`, `/matches/running`, etc.
 - `GET /api/pandascore/videogames`, `/videogames/{id}`, etc.
+- `GET /api/pandascore/csgo/...` para consultar datos específicos de Counter Strike (mapas, armas, jugadores, torneos, etc.).
 
 Consultar los controladores en `src/main/java/rjkscore/infrastructure/Controller` para ver el listado completo de rutas.
 
