@@ -9,4 +9,5 @@ public interface FavoriteService {
     FavoriteResponseDto addFavorite(String username, FavoriteRequestDto dto);
     List<FavoriteResponseDto> getFavorites(String username);
     void removeFavorite(Integer favoriteId, String username);
+    void removeAllFavorites(String username);
 }

@@ -42,4 +42,10 @@ public class FavoriteController {
         favoriteService.removeFavorite(favoriteId, principal.getName());
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllFavorites(Principal principal) {
+        favoriteService.removeAllFavorites(principal.getName());
+        return ResponseEntity.noContent().build();
+    }
 }

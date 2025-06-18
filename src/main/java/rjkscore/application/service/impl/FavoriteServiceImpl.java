@@ -89,6 +89,15 @@ public List<FavoriteResponseDto> getFavorites(String username) {
                     case "lol_spell" -> itemData = pandaScoreApiClient.getLolSpell(id);
                     case "lol_rune" -> itemData = pandaScoreApiClient.getLolRuneReforged(id);
                     case "lol_rune_path" -> itemData = pandaScoreApiClient.getLolRunesReforgedPath(id);
+                    case "valorant_ability" -> itemData = pandaScoreApiClient.getValorantAbility(id);
+                    case "valorant_agent" -> itemData = pandaScoreApiClient.getValorantAgent(id);
+                    case "valorant_map" -> itemData = pandaScoreApiClient.getValorantMap(id);
+                    case "valorant_match" -> itemData = pandaScoreApiClient.getValorantMatches();
+                    case "valorant_player" -> itemData = pandaScoreApiClient.getValorantPlayers();
+                    case "valorant_series" -> itemData = pandaScoreApiClient.getValorantSeries();
+                    case "valorant_team" -> itemData = pandaScoreApiClient.getValorantTeams();
+                    case "valorant_tournament" -> itemData = pandaScoreApiClient.getValorantTournaments();
+                    case "valorant_weapon" -> itemData = pandaScoreApiClient.getValorantWeapon(id);
                     default -> itemData = null;
                 }
 
@@ -108,5 +117,12 @@ public List<FavoriteResponseDto> getFavorites(String username) {
             throw new RuntimeException("Favorite does not belong to user");
         }
         favoriteRepository.delete(favorite);
+    }
+
+    @Override
+    public void removeAllFavorites(String username) {
+        AppUser user = appUserRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        favoriteRepository.deleteByUser(user);
     }
 }
