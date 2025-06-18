@@ -313,4 +313,113 @@ public class PandaScoreApiClient {
         return fetchList("https://api.pandascore.co/series/" + id);
     }
 
+    // --- DOTA2 endpoints ---
+    public JsonNode getDota2Abilities() {
+        return fetchList("https://api.pandascore.co/dota2/abilities");
+    }
+
+    public JsonNode getDota2Ability(String id) {
+        return fetchList("https://api.pandascore.co/dota2/abilities/" + id);
+    }
+
+    public JsonNode getDota2Game(String id) {
+        return fetchList("https://api.pandascore.co/dota2/games/" + id);
+    }
+
+    public JsonNode getDota2Heroes() {
+        return fetchList("https://api.pandascore.co/dota2/heroes");
+    }
+
+    public JsonNode getDota2Hero(String id) {
+        return fetchList("https://api.pandascore.co/dota2/heroes/" + id);
+    }
+
+    public JsonNode getDota2Items() {
+        return fetchList("https://api.pandascore.co/dota2/items");
+    }
+
+    public JsonNode getDota2Item(String id) {
+        return fetchList("https://api.pandascore.co/dota2/items/" + id);
+    }
+
+    public JsonNode getDota2Leagues() {
+        return fetchList("https://api.pandascore.co/dota2/leagues");
+    }
+
+    public JsonNode getDota2Matches() {
+        return fetchList("https://api.pandascore.co/dota2/matches");
+    }
+
+    public JsonNode getDota2MatchesPast() {
+        return fetchList("https://api.pandascore.co/dota2/matches/past");
+    }
+
+    public JsonNode getDota2MatchesRunning() {
+        return fetchList("https://api.pandascore.co/dota2/matches/running");
+    }
+
+    public JsonNode getDota2MatchesUpcoming() {
+        return fetchList("https://api.pandascore.co/dota2/matches/upcoming");
+    }
+
+    public JsonNode getDota2Match(String id) {
+        return fetchList("https://api.pandascore.co/dota2/matches/" + id);
+    }
+
+    public JsonNode getDota2Players() {
+        return fetchList("https://api.pandascore.co/dota2/players");
+    }
+
+    public JsonNode getDota2Player(String id) {
+        return fetchList("https://api.pandascore.co/dota2/players/" + id);
+    }
+
+    public JsonNode getDota2Series() {
+        return fetchList("https://api.pandascore.co/dota2/series");
+    }
+
+    public JsonNode getDota2SeriesPast() {
+        return fetchList("https://api.pandascore.co/dota2/series/past");
+    }
+
+    public JsonNode getDota2SeriesRunning() {
+        return fetchList("https://api.pandascore.co/dota2/series/running");
+    }
+
+    public JsonNode getDota2SeriesUpcoming() {
+        return fetchList("https://api.pandascore.co/dota2/series/upcoming");
+    }
+
+    public JsonNode getDota2SeriesTeams(String id) {
+        return fetchList("https://api.pandascore.co/dota2/series/" + id + "/teams");
+    }
+
+    public JsonNode getDota2Teams() {
+        return fetchList("https://api.pandascore.co/dota2/teams");
+    }
+
+    public JsonNode getDota2Team(String id) {
+        return fetchList("https://api.pandascore.co/dota2/teams/" + id);
+    }
+
+    public JsonNode getDota2Tournaments() {
+        return fetchList("https://api.pandascore.co/dota2/tournaments");
+    }
+
+    public JsonNode getDota2TournamentsPast() {
+        return fetchList("https://api.pandascore.co/dota2/tournaments/past");
+    }
+
+    public JsonNode getDota2TournamentsRunning() {
+        return fetchList("https://api.pandascore.co/dota2/tournaments/running");
+    }
+
+    public JsonNode getDota2TournamentsUpcoming() {
+        return fetchList("https://api.pandascore.co/dota2/tournaments/upcoming");
+    }
+
+    public JsonNode getDota2Tournament(String id) {
+        return fetchList("https://api.pandascore.co/dota2/tournaments/" + id);
+    }
+
 }

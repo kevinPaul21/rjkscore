@@ -74,7 +74,11 @@ public List<FavoriteResponseDto> getFavorites(String username) {
                     case "csgo_map" -> itemData = pandaScoreApiClient.getCsgoMap(id);
                     case "csgo_weapon" -> itemData = pandaScoreApiClient.getCsgoWeapon(id);
                     case "series" -> itemData = pandaScoreApiClient.getSeries(id);
-
+                    case "dota2_team" -> itemData = pandaScoreApiClient.getDota2Team(id);
+                    case "dota2_player" -> itemData = pandaScoreApiClient.getDota2Player(id);
+                    case "dota2_tournament" -> itemData = pandaScoreApiClient.getDota2Tournament(id);
+                    case "dota2_match" -> itemData = pandaScoreApiClient.getDota2Match(id);
+                    case "dota2_game" -> itemData = pandaScoreApiClient.getDota2Game(id);
                     default -> itemData = null;
                 }
 
