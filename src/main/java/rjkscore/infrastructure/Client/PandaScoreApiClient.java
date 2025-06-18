@@ -312,4 +312,109 @@ public class PandaScoreApiClient {
     public JsonNode getVideogameVersions(String videogameIdOrSlug) {
         return fetchList("https://api.pandascore.co/videogames/" + videogameIdOrSlug + "/versions");
     }
+
+    // --- CSGO endpoints ---
+    public JsonNode getCsgoGames() {
+        return fetchList("https://api.pandascore.co/csgo/games");
+    }
+
+    public JsonNode getCsgoGame(String id) {
+        return fetchList("https://api.pandascore.co/csgo/games/" + id);
+    }
+
+    public JsonNode getCsgoGameEvents(String id) {
+        return fetchList("https://api.pandascore.co/csgo/games/" + id + "/events");
+    }
+
+    public JsonNode getCsgoGameRounds(String id) {
+        return fetchList("https://api.pandascore.co/csgo/games/" + id + "/rounds");
+    }
+
+    public JsonNode getCsgoLeagues() {
+        return fetchList("https://api.pandascore.co/csgo/leagues");
+    }
+
+    public JsonNode getCsgoMaps() {
+        return fetchList("https://api.pandascore.co/csgo/maps");
+    }
+
+    public JsonNode getCsgoMap(String id) {
+        return fetchList("https://api.pandascore.co/csgo/maps/" + id);
+    }
+
+    public JsonNode getCsgoMatches() {
+        return fetchList("https://api.pandascore.co/csgo/matches");
+    }
+
+    public JsonNode getCsgoMatchesPast() {
+        return fetchList("https://api.pandascore.co/csgo/matches/past");
+    }
+
+    public JsonNode getCsgoMatchesRunning() {
+        return fetchList("https://api.pandascore.co/csgo/matches/running");
+    }
+
+    public JsonNode getCsgoMatchesUpcoming() {
+        return fetchList("https://api.pandascore.co/csgo/matches/upcoming");
+    }
+
+    public JsonNode getCsgoMatch(String id) {
+        return fetchList("https://api.pandascore.co/csgo/matches/" + id);
+    }
+
+    public JsonNode getCsgoPlayerStats() {
+        return fetchList("https://api.pandascore.co/csgo/stats/players");
+    }
+
+    public JsonNode getCsgoTeamStats() {
+        return fetchList("https://api.pandascore.co/csgo/stats/teams");
+    }
+
+    public JsonNode getCsgoTournamentStats() {
+        return fetchList("https://api.pandascore.co/csgo/stats/tournaments");
+    }
+
+    public JsonNode getCsgoPlayers() {
+        return fetchList("https://api.pandascore.co/csgo/players");
+    }
+
+    public JsonNode getCsgoPlayer(String id) {
+        return fetchList("https://api.pandascore.co/csgo/players/" + id);
+    }
+
+    public JsonNode getCsgoTeams() {
+        return fetchList("https://api.pandascore.co/csgo/teams");
+    }
+
+    public JsonNode getCsgoTeam(String id) {
+        return fetchList("https://api.pandascore.co/csgo/teams/" + id);
+    }
+
+    public JsonNode getCsgoTournaments() {
+        return fetchList("https://api.pandascore.co/csgo/tournaments");
+    }
+
+    public JsonNode getCsgoTournamentsPast() {
+        return fetchList("https://api.pandascore.co/csgo/tournaments/past");
+    }
+
+    public JsonNode getCsgoTournamentsRunning() {
+        return fetchList("https://api.pandascore.co/csgo/tournaments/running");
+    }
+
+    public JsonNode getCsgoTournamentsUpcoming() {
+        return fetchList("https://api.pandascore.co/csgo/tournaments/upcoming");
+    }
+
+    public JsonNode getCsgoTournament(String id) {
+        return fetchList("https://api.pandascore.co/csgo/tournaments/" + id);
+    }
+
+    public JsonNode getCsgoWeapons() {
+        return fetchList("https://api.pandascore.co/csgo/weapons");
+    }
+
+    public JsonNode getCsgoWeapon(String id) {
+        return fetchList("https://api.pandascore.co/csgo/weapons/" + id);
+    }
 }
