@@ -3,6 +3,7 @@ package rjkscore.infrastructure.Controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import rjkscore.infrastructure.Dto.Response.AppUserResponseDto;
 public class AppUserController {
 
     private final AppUserService service;
+
     public AppUserController(AppUserService service) {
         this.service = service;
     }
@@ -31,20 +33,28 @@ public class AppUserController {
     }
 
     @PutMapping("/me")
-    public ResponseEntity<AppUserResponseDto> updateCurrentUser(Principal principal,
-                                                                @RequestBody UpdateUserDto dto) {
-        return ResponseEntity.ok(service.updateUser(principal.getName(), dto));
+    public ResponseEntity<AppUserResponseDto> updateCurrentUser(Principal principal, @RequestBody UpdateUserDto dto) {
+        try {
+            return ResponseEntity.ok(service.updateUser(principal.getName(), dto));
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 
     @PutMapping("/{userId}")
     public ResponseEntity<AppUserResponseDto> updateUser(@PathVariable Long userId, @RequestBody UpdateUserDto dto) {
-        return ResponseEntity.ok(service.updateUser(userId, dto));
+        try {
+            return ResponseEntity.ok(service.updateUser(userId, dto));
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 
     @PutMapping("/{userId}/coins")
-    public ResponseEntity<AppUserResponseDto> updateCoins(@PathVariable long userId, @RequestBody CoinsUpdateDto coinsDto) {
+    public ResponseEntity<AppUserResponseDto> updateCoins(@PathVariable long userId,
+            @RequestBody CoinsUpdateDto coinsDto) {
         return ResponseEntity.ok(service.updateCoins(userId, coinsDto.getCoins()));
 
     }
-    
+
 }

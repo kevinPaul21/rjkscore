@@ -40,29 +40,39 @@ public class AppUserServiceImpl implements AppUserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    private void validateAndSetUserFields(AppUser user, UpdateUserDto dto) {
+        if (dto.getUsername() != null) {
+            repository.findByUsername(dto.getUsername())
+                .filter(u -> !u.getUserId().equals(user.getUserId()))
+                .ifPresent(u -> { throw new RuntimeException("Username already exists"); });
+            user.setUsername(dto.getUsername());
+        }
+
+        if (dto.getEmail() != null) {
+            repository.findByEmail(dto.getEmail())
+                .filter(u -> !u.getUserId().equals(user.getUserId()))
+                .ifPresent(u -> { throw new RuntimeException("Email already exists"); });
+            user.setEmail(dto.getEmail());
+        }
+
+        if (dto.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
+    }
+
     @Override
     public AppUserResponseDto updateUser(Long userId, UpdateUserDto dto) {
         AppUser user = repository.findById(userId)
-              .orElseThrow(()-> new NoSuchElementException("user not found"));
-            user.setUsername(dto.getUsername());
-            user.setEmail(dto.getEmail());
-
-            return mapper.toResponseDto(repository.save(user));
+            .orElseThrow(() -> new NoSuchElementException("User not found"));
+        validateAndSetUserFields(user, dto);
+        return mapper.toResponseDto(repository.save(user));
     }
 
     @Override
     public AppUserResponseDto updateUser(String username, UpdateUserDto dto) {
         AppUser user = repository.findByUsername(username)
-                .orElseThrow(() -> new NoSuchElementException("user not found"));
-        if (dto.getUsername() != null) {
-            user.setUsername(dto.getUsername());
-        }
-        if (dto.getEmail() != null) {
-            user.setEmail(dto.getEmail());
-        }
-        if (dto.getPassword() != null) {
-            user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        }
+            .orElseThrow(() -> new NoSuchElementException("User not found"));
+        validateAndSetUserFields(user, dto);
         return mapper.toResponseDto(repository.save(user));
     }
 
