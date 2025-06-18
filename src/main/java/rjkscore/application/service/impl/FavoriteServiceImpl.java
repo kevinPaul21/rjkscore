@@ -2,6 +2,9 @@ package rjkscore.application.service.impl;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,6 +17,7 @@ import rjkscore.infrastructure.Dto.Request.FavoriteRequestDto;
 import rjkscore.infrastructure.Dto.Response.FavoriteResponseDto;
 import rjkscore.infrastructure.Repository.AppUserRepository;
 import rjkscore.infrastructure.Repository.FavoriteRepository;
+import rjkscore.infrastructure.Client.PandaScoreApiClient;
 
 @Service
 public class FavoriteServiceImpl implements FavoriteService {
