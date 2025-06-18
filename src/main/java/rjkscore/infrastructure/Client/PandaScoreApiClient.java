@@ -417,4 +417,9 @@ public class PandaScoreApiClient {
     public JsonNode getCsgoWeapon(String id) {
         return fetchList("https://api.pandascore.co/csgo/weapons/" + id);
     }
+// ----
+    public JsonNode getSeries(String id) {
+    return fetchList("https://api.pandascore.co/series/" + id);
+}
+
 }
