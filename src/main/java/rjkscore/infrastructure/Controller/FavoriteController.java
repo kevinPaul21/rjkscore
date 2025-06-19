@@ -43,7 +43,7 @@ public class FavoriteController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/all")
     public ResponseEntity<Void> deleteAllFavorites(Principal principal) {
         favoriteService.removeAllFavorites(principal.getName());
         return ResponseEntity.noContent().build();
