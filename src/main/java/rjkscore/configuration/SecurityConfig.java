@@ -52,7 +52,7 @@ http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilt
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // y el dominio real si es necesario
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://lemon-field-01fd3301e.1.azurestaticapps.net/")); // y el dominio real si es necesario
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
