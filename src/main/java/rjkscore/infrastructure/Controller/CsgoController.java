@@ -121,6 +121,12 @@ public class CsgoController {
         return csgoService.getTeam(id);
     }
 
+    //Series
+    @GetMapping("/series")
+    public JsonNode getSeries() {
+        return csgoService.getSeries();
+    }
+
     // Tournaments
     @GetMapping("/tournaments")
     public JsonNode getTournaments() {

@@ -118,6 +118,11 @@ public class CsgoServiceImpl implements CsgoService {
         return pandaScoreApiClient.getCsgoTeam(teamId);
     }
 
+    @Override
+    public JsonNode getSeries() {
+        return pandaScoreApiClient.getCsgoSeries();
+    }
+
     // Tournaments
     @Override
     public JsonNode getTournaments() {

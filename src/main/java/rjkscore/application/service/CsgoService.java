@@ -32,6 +32,9 @@ public interface CsgoService {
     JsonNode getPlayers();
     JsonNode getPlayer(String playerId);
 
+    // Series
+    JsonNode getSeries();
+
     // Teams
     JsonNode getTeams();
     JsonNode getTeam(String teamId);

@@ -280,6 +280,10 @@ public class PandaScoreApiClient {
         return fetchList("https://api.pandascore.co/csgo/teams/" + id);
     }
 
+    public JsonNode getCsgoSeries() {
+        return fetchList("https://api.pandascore.co/csgo/series");
+    }
+
     public JsonNode getCsgoTournaments() {
         return fetchList("https://api.pandascore.co/csgo/tournaments");
     }
